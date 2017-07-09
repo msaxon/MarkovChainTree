@@ -24,7 +24,7 @@ public class Main {
                 "How can it be.");
         System.out.println(secondMarkovChainTree);
         for(int i = 0; i < 10; i++) {
-            System.out.println(secondMarkovChainTree.generateString());
+            //System.out.println(secondMarkovChainTree.generateString());
         }
     }
 

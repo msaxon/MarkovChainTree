@@ -7,6 +7,7 @@ import org.testng.Assert;
  * Created by Matthew on 7/9/2017.
  */
 public class WordMarkovChainTreeTest {
+
     @Test
     public void toString_WordTree() {
         //adding
@@ -42,5 +43,57 @@ public class WordMarkovChainTreeTest {
         for(int i = 0; i < 10; i++) {
             Assert.assertTrue(wordMarkovChainTree.generateString().length() > 1);
         }
+    }
+
+    @Test
+    public void generateString_WordTree_MaxRepeats() {
+        int maxRepeats = 1;
+        MarkovProfile profile = new MarkovProfile();
+
+        profile.setMaximumRepeat(maxRepeats);
+
+        WordMarkovChainTree wordMarkovChainTree = new WordMarkovChainTree();
+        wordMarkovChainTree.addString("Donny", "Danny", "Tonny", "Rinny", "Sinnty");
+        wordMarkovChainTree.setMarkovProfile(profile);
+        for(int i = 0; i < 100; i++) {
+            Assert.assertFalse(checkForDuplicateRuns(wordMarkovChainTree.generateString(), maxRepeats));
+        }
+    }
+
+    @Test
+    public void generateString_WordTree_MinMaxLength() {
+        int minLength = 5;
+        int maxLength = 3;
+
+        WordMarkovChainTree wordMarkovChainTree = new WordMarkovChainTree();
+        wordMarkovChainTree.addString("Donny", "Danny", "Tonny", "Rinny", "Sinnty");
+
+        MarkovProfile profile = new MarkovProfile();
+        profile.setMinimumCount(minLength);
+        wordMarkovChainTree.setMarkovProfile(profile);
+
+        for(int i = 0; i < 100; i++) {
+            String t = wordMarkovChainTree.generateString();
+            Assert.assertTrue(t.length() >= minLength);
+        }
+
+        profile = new MarkovProfile();
+        profile.setMaximumCount(maxLength);
+        wordMarkovChainTree.setMarkovProfile(profile);
+        for(int i = 0; i < 100; i++) {
+            String t = wordMarkovChainTree.generateString();
+            Assert.assertTrue(t.length() <= maxLength);
+        }
+    }
+
+    private boolean checkForDuplicateRuns(String string, int maxRepeats) {
+        int duplicates = 1;
+        String pastString = "";
+        for(String s : string.split("")) {
+            if(s.equals(pastString)) duplicates++;
+            else duplicates = 1;
+            if(duplicates > maxRepeats) return true;
+        }
+        return false;
     }
 }
