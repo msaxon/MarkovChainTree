@@ -8,11 +8,11 @@ import profile.ProfileEvaluationResponse;
 public class WordMarkovChainTree extends MarkovChainTree {
 
     public void addString(String... string) {
-        super.addString(WORDS, string);
+        super.addString(Delimiter.WORD, string);
     }
 
-    String generateString() {
-        return super.generateString(WORDS);
+    public String generateString() {
+        return super.generateString(Delimiter.WORD);
     }
 
     @Override

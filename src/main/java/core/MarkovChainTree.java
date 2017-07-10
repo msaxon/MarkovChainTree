@@ -1,6 +1,7 @@
 package core;
 
 import com.google.common.collect.TreeMultiset;
+import profile.MarkovProfile;
 import profile.ProfileEvaluationResponse;
 
 import java.util.Collections;
@@ -16,8 +17,6 @@ import static com.google.common.collect.TreeMultiset.create;
 public abstract class MarkovChainTree {
     protected static final String C_START = "*";
     protected static final String C_END = "+";
-    final Delimiter SENTENCE = new MarkovChainTree.Delimiter(" ");
-    final Delimiter WORDS = new MarkovChainTree.Delimiter("");
 
     private HashMap<String, TreeMultiset<String>> markovTree = new HashMap<>();
 
@@ -29,7 +28,7 @@ public abstract class MarkovChainTree {
     void addString(Delimiter deliminator, String... string) {
         for(String s : string) {
             String current = C_START;
-            for(String index : s.toLowerCase().split(deliminator.getDelimiterString())) {
+            for(String index : s.toLowerCase().split(deliminator.getDelimiter())) {
                 if(!markovTree.containsKey(current)) {
                     markovTree.put(current, TreeMultiset.create(Collections.singleton(index)));
                 } else {
@@ -55,7 +54,7 @@ public abstract class MarkovChainTree {
             switch (per) {
                 case KEEP_CURRENT:
                     sb.append(nextChar);
-                    sb.append(delimiter.getDelimiterString());
+                    sb.append(delimiter.getDelimiter());
                     current = nextChar;
                     break;
                 case SKIP_CURRENT:
@@ -99,17 +98,8 @@ public abstract class MarkovChainTree {
 
     private String getNextString(String c) {
         TreeMultiset<String> treeMultiset = markovTree.get(c);
+        if(treeMultiset == null || treeMultiset.size() < 1) throw new IllegalStateException("Must add strings to tree before generating strings.");
         int index = ThreadLocalRandom.current().nextInt(0, treeMultiset.size());
         return (String) treeMultiset.toArray()[index];
-    }
-
-    protected class Delimiter {
-        String s;
-
-        Delimiter(String string) {
-            s = string;
-        }
-
-        String getDelimiterString() { return s; }
     }
 }

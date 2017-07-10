@@ -2,6 +2,8 @@ package core;
 
 import org.junit.Test;
 import org.testng.Assert;
+import profile.MarkovProfile;
+import sun.plugin.dom.exception.InvalidStateException;
 
 /**
  * Created by Matthew on 7/9/2017.
@@ -85,6 +87,18 @@ public class WordMarkovChainTreeTest {
             Assert.assertTrue(t.length() <= maxLength);
         }
     }
+
+    @Test
+    public void generateString_WordTree_NoStringsAddedShouldThrowException() {
+        WordMarkovChainTree wordMarkovChainTree = new WordMarkovChainTree();
+        try {
+            wordMarkovChainTree.generateString();
+            Assert.fail("Should have thrown an exception generating string without collection");
+        } catch (IllegalStateException e) {
+            Assert.assertEquals(e.getMessage(), "Must add strings to tree before generating strings.");
+        }
+    }
+
 
     private boolean checkForDuplicateRuns(String string, int maxRepeats) {
         int duplicates = 1;

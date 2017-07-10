@@ -2,6 +2,7 @@ package core;
 
 import org.junit.Test;
 import org.testng.Assert;
+import profile.MarkovProfile;
 
 /**
  * Created by Matthew on 7/9/2017.

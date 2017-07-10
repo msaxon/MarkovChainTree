@@ -1,4 +1,4 @@
-package core;
+package profile;
 
 /**
  * Created by Matthew on 7/9/2017.

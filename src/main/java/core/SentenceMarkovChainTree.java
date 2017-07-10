@@ -10,11 +10,11 @@ import java.util.Arrays;
 public class SentenceMarkovChainTree extends MarkovChainTree {
 
     public void addString(String... string) {
-        super.addString(SENTENCE, string);
+        super.addString(Delimiter.SENTENCE, string);
     }
 
     public String generateString() {
-        return super.generateString(SENTENCE);
+        return super.generateString(Delimiter.SENTENCE);
     }
 
     @Override
