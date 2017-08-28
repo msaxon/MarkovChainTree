@@ -27,12 +27,11 @@ public class WordMarkovChainTree extends MarkovChainTree {
             //if the current word has too many repeats
             String tempString = sb.toString();
             int currentRepeat = 0;
-            if(tempString.length() > 0) {
-                while (tempString.substring(tempString.length() - 1).equals(current)) {
-                    tempString = tempString.substring(0, tempString.length() - 2);
-                    currentRepeat++;
-                }
+            while (tempString.length() > 0 && tempString.substring(tempString.length() - 1).equals(current)) {
+                tempString = tempString.substring(0, tempString.length() - 2);
+                currentRepeat++;
             }
+
             if(currentRepeat+1 > getMarkovProfile().getMaximumRepeat()) return ProfileEvaluationResponse.SKIP_CURRENT;
         }
         if(current.equals(C_END)) return ProfileEvaluationResponse.END_HERE;
