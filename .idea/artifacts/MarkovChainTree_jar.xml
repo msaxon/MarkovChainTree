@@ -3,8 +3,8 @@
     <output-path>$PROJECT_DIR$/out/artifacts/MarkovChainTree_jar</output-path>
     <root id="archive" name="MarkovChainTree.jar">
       <element id="module-output" name="MarkovChainTree" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-io-2.5.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/guava/guava/19.0/guava-19.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-io/commons-io/2.5/commons-io-2.5.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

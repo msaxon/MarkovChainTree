@@ -15,7 +15,8 @@ public class Main {
             From that, you can generate a random word from that collection of words.
          */
         WordMarkovChainTree markovChainTree = new WordMarkovChainTree();
-        markovChainTree.addString("Tom");
+        markovChainTree.addString("Tom", "Dylan", "Derrick", "Timothy", "Taryn", "Daniel", "Dillion", "Damion",
+                "Talon", "Tristan", "Trisha", "Rebecka", "Tibbers");
 
         //has a toString method to see smaller trees printed
         System.out.println(markovChainTree);
