@@ -14,9 +14,9 @@ public class SentenceMarkovChainTreeTest {
         sentenceMarkovChainTree.addString("Hello world");
 
         String printedTree = sentenceMarkovChainTree.toString();
-        Assert.assertTrue(printedTree.contains("hello - world, ."));
-        Assert.assertTrue(printedTree.contains("* - hello, ."));
-        Assert.assertTrue(printedTree.contains("world - +, ."));
+        Assert.assertTrue(printedTree.contains("hello - world, "));
+        Assert.assertTrue(printedTree.contains("* - hello, "));
+        Assert.assertTrue(printedTree.contains("world - +, +, "));
     }
 
     @Test

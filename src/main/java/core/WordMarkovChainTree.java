@@ -28,8 +28,10 @@ public class WordMarkovChainTree extends MarkovChainTree {
             String tempString = sb.toString();
             int currentRepeat = 0;
             while (tempString.length() > 0 && tempString.substring(tempString.length() - 1).equals(current)) {
-                tempString = tempString.substring(0, tempString.length() - 2);
                 currentRepeat++;
+                if(tempString.length() == 1) break;
+                tempString = tempString.substring(0, tempString.length() - 2);
+
             }
 
             if(currentRepeat+1 > getMarkovProfile().getMaximumRepeat()) return ProfileEvaluationResponse.SKIP_CURRENT;

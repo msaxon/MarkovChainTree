@@ -4,9 +4,7 @@ import com.google.common.collect.TreeMultiset;
 import profile.MarkovProfile;
 import profile.ProfileEvaluationResponse;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.google.common.collect.TreeMultiset.create;
@@ -37,8 +35,9 @@ public abstract class MarkovChainTree {
                 current = index;
             }
             if (!markovTree.containsKey(current)) {
-                markovTree.put(current, create(Collections.singleton(C_END)));
+                markovTree.put(current, create(Arrays.asList(C_END, C_END)));
             } else {
+                markovTree.get(current).add(C_END);
                 markovTree.get(current).add(C_END);
             }
         }
@@ -85,7 +84,7 @@ public abstract class MarkovChainTree {
             for(String s : entry.getValue()) {
                 sb.append(s).append(", ");
             }
-            sb.append(".\n");
+            sb.append("\n");
         }
         return sb.toString();
     }

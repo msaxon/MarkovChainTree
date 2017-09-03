@@ -3,7 +3,6 @@ package core;
 import org.junit.Test;
 import org.testng.Assert;
 import profile.MarkovProfile;
-import sun.plugin.dom.exception.InvalidStateException;
 
 /**
  * Created by Matthew on 7/9/2017.
@@ -17,10 +16,10 @@ public class WordMarkovChainTreeTest {
         wordMarkovChainTree.addString("Tom");
 
         String printedTree = wordMarkovChainTree.toString();
-        Assert.assertTrue(printedTree.contains("t - o, ."));
-        Assert.assertTrue(printedTree.contains("* - t, ."));
-        Assert.assertTrue(printedTree.contains("m - +, ."));
-        Assert.assertTrue(printedTree.contains("o - m, ."));
+        Assert.assertTrue(printedTree.contains("t - o, "));
+        Assert.assertTrue(printedTree.contains("* - t, "));
+        Assert.assertTrue(printedTree.contains("m - +, +, "));
+        Assert.assertTrue(printedTree.contains("o - m, "));
     }
 
     @Test
